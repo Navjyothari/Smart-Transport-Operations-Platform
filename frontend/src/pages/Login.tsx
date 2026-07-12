@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
-import { Truck, Lock, Mail, Eye, EyeOff } from 'lucide-react';
+import { Truck, Lock, Mail, Eye, EyeOff, ArrowLeft } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function Login() {
@@ -39,6 +39,11 @@ export default function Login() {
 
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-slate-950 relative overflow-hidden">
+      {/* Back to Home button */}
+      <Link to="/" className="absolute top-6 left-6 btn btn-secondary text-xs flex items-center gap-1.5 border border-slate-800 bg-slate-900/80 hover:bg-slate-850 hover:text-white transition-all cursor-pointer z-25">
+        <ArrowLeft size={14} /> Back to Home
+      </Link>
+
       {/* Background gradients for aesthetics */}
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-amber-600/10 rounded-full blur-[120px] pointer-events-none"></div>

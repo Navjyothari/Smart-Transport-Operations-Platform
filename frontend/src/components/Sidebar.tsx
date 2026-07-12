@@ -32,7 +32,7 @@ export default function Sidebar() {
   return (
     <aside className="w-64 bg-slate-900 border-r border-slate-800 flex flex-col h-full shrink-0">
       {/* Brand Header */}
-      <div className="p-6 border-b border-slate-800 flex items-center gap-3">
+      <Link to="/dashboard" className="p-6 border-b border-slate-800 flex items-center gap-3 hover:bg-slate-800/30 transition-colors duration-150 select-none cursor-pointer">
         <div className="bg-blue-600 p-2 rounded-lg text-white">
           <Truck size={24} className="animate-pulse" />
         </div>
@@ -40,7 +40,7 @@ export default function Sidebar() {
           <h1 className="text-xl font-bold text-white tracking-wide">TransitOps</h1>
           <span className="text-xs text-slate-500 font-medium uppercase tracking-widest">Fleet Portal</span>
         </div>
-      </div>
+      </Link>
 
       {/* Navigation */}
       <nav className="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
