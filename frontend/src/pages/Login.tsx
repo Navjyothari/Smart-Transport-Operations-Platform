@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
-import { Truck, Lock, Mail, Eye, EyeOff, ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Eye, EyeOff, Lock, Mail, ShieldCheck, Truck } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function Login() {
@@ -38,34 +38,27 @@ export default function Login() {
   };
 
   return (
-    <div className="flex h-screen w-screen items-center justify-center bg-slate-950 relative overflow-hidden">
-      {/* Back to Home button */}
-      <Link to="/" className="absolute top-6 left-6 btn btn-secondary text-xs flex items-center gap-1.5 border border-slate-800 bg-slate-900/80 hover:bg-slate-850 hover:text-white transition-all cursor-pointer z-25">
-        <ArrowLeft size={14} /> Back to Home
-      </Link>
-
-      {/* Background gradients for aesthetics */}
-      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-amber-600/10 rounded-full blur-[120px] pointer-events-none"></div>
-
-      <div className="w-full max-w-md p-8 bg-slate-900/60 border border-slate-800 rounded-2xl shadow-2xl backdrop-blur-xl z-10">
-        <div className="flex flex-col items-center mb-8">
-          <div className="bg-blue-600 p-3 rounded-2xl text-white mb-4 shadow-lg shadow-blue-500/20">
-            <Truck size={32} />
+    <main className="auth-page">
+      <Link to="/" className="auth-back"><ArrowLeft size={15} /> Home</Link>
+      <section className="auth-card">
+        <div className="auth-brand">
+          <span><Truck size={24} /></span>
+          <div>
+            <strong>TransitOps PRO</strong>
+            <small>Secure fleet workspace</small>
           </div>
-          <h2 className="text-2xl font-bold text-white">Welcome to TransitOps</h2>
-          <p className="text-sm text-slate-400 mt-1.5 text-center">
-            Fleet management, operations, and ROI analytics portal
-          </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="auth-heading">
+          <p>Welcome back</p>
+          <h1>Sign in to manage operations.</h1>
+        </div>
+
+        <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">
-            <label className="label" htmlFor="email-input">Email Address</label>
-            <div className="relative">
-              <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500">
-                <Mail size={18} />
-              </span>
+            <label className="label" htmlFor="email-input">Email address</label>
+            <div className="auth-input-icon">
+              <Mail size={18} />
               <input
                 id="email-input"
                 type="email"
@@ -73,95 +66,47 @@ export default function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@transitops.com"
-                className="input pl-10"
+                className="input"
               />
             </div>
           </div>
 
           <div className="form-group">
             <label className="label" htmlFor="password-input">Password</label>
-            <div className="relative">
-              <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500">
-                <Lock size={18} />
-              </span>
+            <div className="auth-input-icon">
+              <Lock size={18} />
               <input
                 id="password-input"
                 type={showPassword ? 'text' : 'password'}
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                className="input pl-10 pr-10"
+                placeholder="password123"
+                className="input"
               />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-300 cursor-pointer"
-              >
+              <button type="button" onClick={() => setShowPassword(!showPassword)} aria-label="Toggle password visibility">
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full btn btn-primary justify-center py-3 text-base mt-2 shadow-xl shadow-blue-600/20"
-          >
-            {loading ? (
-              <span className="flex items-center gap-2">
-                <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                Logging in...
-              </span>
-            ) : (
-              'Sign In'
-            )}
+          <button type="submit" disabled={loading} className="btn btn-primary auth-submit">
+            {loading ? 'Signing in...' : 'Sign in'}
           </button>
         </form>
 
-        <div className="mt-4 text-center">
-          <Link to="/apply" className="text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
-            Want to join as a driver? Apply now
-          </Link>
-        </div>
+        <Link to="/apply" className="auth-link">Want to join as a driver? Apply now</Link>
 
-        {/* Demo Credentials Quick-Links */}
-        <div className="mt-8 border-t border-slate-800 pt-6">
-          <div className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3 text-center">
-            Demo Autofill Accounts (pw: password123)
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            <button
-              onClick={() => handleAutofill('manager@transitops.com')}
-              className="text-left px-3 py-2 bg-slate-950/40 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 rounded-lg text-xs transition-colors cursor-pointer"
-            >
-              <div className="font-semibold text-slate-300">Manager</div>
-              <div className="text-[10px] text-slate-500 truncate">manager@transitops.com</div>
-            </button>
-            <button
-              onClick={() => handleAutofill('driver@transitops.com')}
-              className="text-left px-3 py-2 bg-slate-950/40 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 rounded-lg text-xs transition-colors cursor-pointer"
-            >
-              <div className="font-semibold text-slate-300">Driver</div>
-              <div className="text-[10px] text-slate-500 truncate">driver@transitops.com</div>
-            </button>
-            <button
-              onClick={() => handleAutofill('safety@transitops.com')}
-              className="text-left px-3 py-2 bg-slate-950/40 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 rounded-lg text-xs transition-colors cursor-pointer"
-            >
-              <div className="font-semibold text-slate-300">Safety</div>
-              <div className="text-[10px] text-slate-500 truncate">safety@transitops.com</div>
-            </button>
-            <button
-              onClick={() => handleAutofill('finance@transitops.com')}
-              className="text-left px-3 py-2 bg-slate-950/40 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 rounded-lg text-xs transition-colors cursor-pointer"
-            >
-              <div className="font-semibold text-slate-300">Finance</div>
-              <div className="text-[10px] text-slate-500 truncate">finance@transitops.com</div>
-            </button>
+        <div className="demo-box">
+          <div className="demo-title"><ShieldCheck size={14} /> Demo accounts</div>
+          <div className="demo-grid">
+            <button onClick={() => handleAutofill('manager@transitops.com')} type="button"><strong>Manager</strong><span>manager@transitops.com</span></button>
+            <button onClick={() => handleAutofill('driver@transitops.com')} type="button"><strong>Driver</strong><span>driver@transitops.com</span></button>
+            <button onClick={() => handleAutofill('safety@transitops.com')} type="button"><strong>Safety</strong><span>safety@transitops.com</span></button>
+            <button onClick={() => handleAutofill('finance@transitops.com')} type="button"><strong>Finance</strong><span>finance@transitops.com</span></button>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }

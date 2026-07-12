@@ -69,57 +69,43 @@ export default function Dashboard() {
   if (loading && !kpis) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+        <div className="app-spinner"></div>
       </div>
     );
   }
 
   return (
     <div>
-      {/* Page Header */}
       <div className="page-header">
         <div>
           <h2 className="page-title">Operations Dashboard</h2>
-          <p className="text-sm text-slate-400 mt-1">Real-time status of fleet vehicles, driver schedules, and trip logs</p>
+          <p className="text-sm text-slate-400 mt-1">Live fleet availability, driver capacity, and trip activity at a glance</p>
         </div>
 
-        {/* Filter Controls */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center bg-slate-900 border border-slate-800 rounded-lg px-3 py-1">
-            <span className="text-xs font-semibold text-slate-500 mr-2 uppercase">Type:</span>
-            <select
-              value={vehicleType}
-              onChange={(e) => setVehicleType(e.target.value)}
-              className="bg-transparent text-sm text-slate-200 border-none outline-none pr-4 cursor-pointer focus:ring-0"
-            >
-              <option value="" className="bg-slate-900">All Types</option>
-              <option value="Van" className="bg-slate-900">Vans</option>
-              <option value="Truck" className="bg-slate-900">Trucks</option>
-              <option value="Bus" className="bg-slate-900">Buses</option>
+        <div className="flex items-center gap-3 flex-wrap justify-end">
+          <div className="dashboard-filter-pill">
+            <span>Type:</span>
+            <select value={vehicleType} onChange={(e) => setVehicleType(e.target.value)}>
+              <option value="">All Types</option>
+              <option value="Van">Vans</option>
+              <option value="Truck">Trucks</option>
+              <option value="Bus">Buses</option>
             </select>
           </div>
 
-          <div className="flex items-center bg-slate-900 border border-slate-800 rounded-lg px-3 py-1">
-            <span className="text-xs font-semibold text-slate-500 mr-2 uppercase">Region:</span>
-            <select
-              value={region}
-              onChange={(e) => setRegion(e.target.value)}
-              className="bg-transparent text-sm text-slate-200 border-none outline-none pr-4 cursor-pointer focus:ring-0"
-            >
-              <option value="" className="bg-slate-900">All Regions</option>
-              <option value="North" className="bg-slate-900">North</option>
-              <option value="South" className="bg-slate-900">South</option>
-              <option value="East" className="bg-slate-900">East</option>
-              <option value="West" className="bg-slate-900">West</option>
+          <div className="dashboard-filter-pill">
+            <span>Region:</span>
+            <select value={region} onChange={(e) => setRegion(e.target.value)}>
+              <option value="">All Regions</option>
+              <option value="North">North</option>
+              <option value="South">South</option>
+              <option value="East">East</option>
+              <option value="West">West</option>
             </select>
           </div>
 
           {(vehicleType || region) && (
-            <button
-              onClick={handleResetFilters}
-              className="p-2 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors cursor-pointer"
-              title="Reset Filters"
-            >
+            <button onClick={handleResetFilters} className="dashboard-reset" type="button" title="Reset filters">
               <RotateCcw size={16} />
             </button>
           )}
@@ -127,39 +113,39 @@ export default function Dashboard() {
       </div>
 
       {loading && (
-        <div className="mb-4 text-xs text-blue-400 animate-pulse font-medium">
-          Refreshing real-time KPIs...
+        <div className="dashboard-refresh">
+          <span></span>
+          Refreshing live KPIs...
         </div>
       )}
 
-      {/* KPI Cards Grid */}
       {kpis && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <KpiCard
-            title="Total Active Vehicles"
+            title="Active Vehicles"
             value={kpis.vehicles.active}
-            subtitle={`Out of ${kpis.vehicles.total} total registered`}
+            subtitle={`Out of ${kpis.vehicles.total} registered`}
             icon={<Truck size={22} />}
-            color="slate"
+            color="blue"
           />
           <KpiCard
             title="Available Vehicles"
             value={kpis.vehicles.available}
-            subtitle="Ready for immediate dispatch"
+            subtitle="Ready for dispatch"
             icon={<CheckCircle2 size={22} />}
             color="emerald"
           />
           <KpiCard
-            title="Vehicles in Maintenance"
+            title="In Maintenance"
             value={kpis.vehicles.inShop}
-            subtitle="Currently undergoing repairs"
+            subtitle="Currently in shop"
             icon={<Wrench size={22} />}
             color="amber"
           />
           <KpiCard
             title="Fleet Utilization"
             value={`${kpis.fleetUtilization}%`}
-            subtitle="Active vehicles currently on trips"
+            subtitle="Active vehicles on trips"
             icon={<TrendingUp size={22} />}
             color="blue"
           />
@@ -167,50 +153,49 @@ export default function Dashboard() {
           <KpiCard
             title="Active Trips"
             value={kpis.trips.active}
-            subtitle="Dispatched and currently in transit"
+            subtitle="Dispatched and in transit"
             icon={<Navigation size={22} />}
             color="blue"
           />
           <KpiCard
-            title="Pending Trips (Draft)"
+            title="Pending Trips"
             value={kpis.trips.pending}
-            subtitle="Awaiting fleet dispatch approval"
+            subtitle="Awaiting dispatch approval"
             icon={<FileClock size={22} />}
             color="slate"
           />
           <KpiCard
             title="Available Drivers"
             value={kpis.drivers.available}
-            subtitle={`Out of ${kpis.drivers.total} total drivers`}
+            subtitle={`Out of ${kpis.drivers.total} drivers`}
             icon={<UserCheck size={22} />}
             color="emerald"
           />
           <KpiCard
-            title="Trips Completed Today"
+            title="Completed Today"
             value={kpis.trips.completedToday}
-            subtitle="Full lifecycle trips finished today"
+            subtitle="Finished trip runs"
             icon={<CheckCircle2 size={22} />}
             color="emerald"
           />
         </div>
       )}
 
-      {/* Quick Access Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="card lg:col-span-2">
           <h3 className="section-title">Operations Log Summary</h3>
           <p className="text-sm text-slate-400 leading-relaxed mb-4">
-            TransitOps enforces strict business policies regarding driver and vehicle state changes.
-            Navigate to the <span className="text-blue-400 font-semibold">Trips</span> tab to create, dispatch, and complete delivery runs. Vehicle servicing can be recorded in the <span className="text-blue-400 font-semibold">Maintenance</span> registry to transactionally route them to shop work.
+            TransitOps keeps dispatch, maintenance, and driver eligibility checks in one workspace.
+            Use Trips to create and complete routes, and Maintenance to move vehicles in and out of shop status.
           </p>
           <div className="flex flex-wrap gap-3">
-            <div className="bg-slate-900 border border-slate-700/60 rounded-lg p-3 flex-1 min-w-[200px]">
-              <div className="text-xs font-semibold text-slate-500 uppercase">Driver Safety Rule</div>
-              <div className="text-xs text-slate-300 mt-1">Drivers with expired commercial licenses or suspended accounts cannot be dispatched under any circumstances.</div>
+            <div className="dashboard-rule-card">
+              <div className="text-xs font-semibold uppercase">Driver Safety Rule</div>
+              <div className="text-xs mt-1">Drivers with expired licenses or suspended accounts cannot be dispatched.</div>
             </div>
-            <div className="bg-slate-900 border border-slate-700/60 rounded-lg p-3 flex-1 min-w-[200px]">
-              <div className="text-xs font-semibold text-slate-500 uppercase">Odometer Progression</div>
-              <div className="text-xs text-slate-300 mt-1">Completing a trip transactionally increments the vehicle's odometer by the actual distance logged.</div>
+            <div className="dashboard-rule-card">
+              <div className="text-xs font-semibold uppercase">Odometer Progression</div>
+              <div className="text-xs mt-1">Completing a trip increments the vehicle odometer by the actual distance logged.</div>
             </div>
           </div>
         </div>
@@ -220,27 +205,21 @@ export default function Dashboard() {
           <div className="space-y-3">
             <div className="flex items-center justify-between text-sm">
               <span className="text-slate-400">North Command Center</span>
-              <span className="font-semibold text-white">Active Operations</span>
+              <span className="font-semibold text-white">Active</span>
             </div>
-            <div className="w-full bg-slate-900 rounded-full h-2">
-              <div className="bg-blue-500 h-2 rounded-full" style={{ width: '45%' }}></div>
-            </div>
+            <div className="dashboard-progress"><div style={{ width: '45%' }}></div></div>
 
             <div className="flex items-center justify-between text-sm pt-2">
               <span className="text-slate-400">South Hub</span>
-              <span className="font-semibold text-white font-mono">Standard Fleet</span>
+              <span className="font-semibold text-white font-mono">Standard</span>
             </div>
-            <div className="w-full bg-slate-900 rounded-full h-2">
-              <div className="bg-emerald-500 h-2 rounded-full" style={{ width: '30%' }}></div>
-            </div>
+            <div className="dashboard-progress"><div style={{ width: '30%' }}></div></div>
 
             <div className="flex items-center justify-between text-sm pt-2">
               <span className="text-slate-400">East and West Outposts</span>
               <span className="font-semibold text-white font-mono">Secondary</span>
             </div>
-            <div className="w-full bg-slate-900 rounded-full h-2">
-              <div className="bg-amber-500 h-2 rounded-full" style={{ width: '25%' }}></div>
-            </div>
+            <div className="dashboard-progress"><div style={{ width: '25%' }}></div></div>
           </div>
         </div>
       </div>

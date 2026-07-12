@@ -3,33 +3,28 @@ interface StatusBadgeProps {
 }
 
 const statusConfig: Record<string, { label: string; color: string }> = {
-  // Vehicle statuses
-  AVAILABLE: { label: 'Available', color: 'bg-emerald-900/60 text-emerald-400 border border-emerald-700/50' },
-  ON_TRIP: { label: 'On Trip', color: 'bg-blue-900/60 text-blue-400 border border-blue-700/50' },
-  IN_SHOP: { label: 'In Shop', color: 'bg-amber-900/60 text-amber-400 border border-amber-700/50' },
-  RETIRED: { label: 'Retired', color: 'bg-slate-700/60 text-slate-400 border border-slate-600/50' },
-  // Driver statuses
-  OFF_DUTY: { label: 'Off Duty', color: 'bg-slate-700/60 text-slate-400 border border-slate-600/50' },
-  SUSPENDED: { label: 'Suspended', color: 'bg-red-900/60 text-red-400 border border-red-700/50' },
-  // Trip statuses
-  DRAFT: { label: 'Draft', color: 'bg-slate-700/60 text-slate-400 border border-slate-600/50' },
-  DISPATCHED: { label: 'Dispatched', color: 'bg-blue-900/60 text-blue-400 border border-blue-700/50' },
-  COMPLETED: { label: 'Completed', color: 'bg-emerald-900/60 text-emerald-400 border border-emerald-700/50' },
-  CANCELLED: { label: 'Cancelled', color: 'bg-red-900/60 text-red-400 border border-red-700/50' },
-  // Maintenance statuses
-  ACTIVE: { label: 'Active', color: 'bg-amber-900/60 text-amber-400 border border-amber-700/50' },
-  CLOSED: { label: 'Closed', color: 'bg-emerald-900/60 text-emerald-400 border border-emerald-700/50' },
-  // Driver request statuses
-  PENDING: { label: 'Pending', color: 'bg-amber-900/60 text-amber-400 border border-amber-700/50' },
-  APPROVED: { label: 'Approved', color: 'bg-emerald-900/60 text-emerald-400 border border-emerald-700/50' },
-  REJECTED: { label: 'Rejected', color: 'bg-red-900/60 text-red-400 border border-red-700/50' },
+  AVAILABLE: { label: 'Available', color: 'status-green' },
+  ON_TRIP: { label: 'On Trip', color: 'status-blue' },
+  IN_SHOP: { label: 'In Shop', color: 'status-amber' },
+  RETIRED: { label: 'Retired', color: 'status-muted' },
+  OFF_DUTY: { label: 'Off Duty', color: 'status-muted' },
+  SUSPENDED: { label: 'Suspended', color: 'status-red' },
+  DRAFT: { label: 'Draft', color: 'status-muted' },
+  DISPATCHED: { label: 'Dispatched', color: 'status-blue' },
+  COMPLETED: { label: 'Completed', color: 'status-green' },
+  CANCELLED: { label: 'Cancelled', color: 'status-red' },
+  ACTIVE: { label: 'Active', color: 'status-amber' },
+  CLOSED: { label: 'Closed', color: 'status-green' },
+  PENDING: { label: 'Pending', color: 'status-amber' },
+  APPROVED: { label: 'Approved', color: 'status-green' },
+  REJECTED: { label: 'Rejected', color: 'status-red' },
 };
 
 export default function StatusBadge({ status }: StatusBadgeProps) {
-  const config = statusConfig[status] || { label: status, color: 'bg-slate-700 text-slate-300' };
+  const config = statusConfig[status] || { label: status, color: 'status-muted' };
   return (
-    <span className={`badge ${config.color}`}>
-      <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80"></span>
+    <span className={`badge status-badge ${config.color}`}>
+      <span className="status-dot"></span>
       {config.label}
     </span>
   );

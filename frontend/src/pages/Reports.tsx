@@ -188,15 +188,15 @@ export default function Reports() {
                 <div className="h-72">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={fuelData}>
-                      <XAxis dataKey="registrationNumber" stroke="#94a3b8" fontSize={11} tickLine={false} />
-                      <YAxis stroke="#94a3b8" fontSize={11} tickLine={false} unit=" km/L" />
+                      <XAxis dataKey="registrationNumber" stroke="#6f789f" fontSize={11} tickLine={false} />
+                      <YAxis stroke="#6f789f" fontSize={11} tickLine={false} unit=" km/L" />
                       <Tooltip
-                        contentStyle={{ backgroundColor: '#1e293b', borderColor: '#334155', color: '#f1f5f9' }}
-                        cursor={{ fill: 'rgba(255,255,255,0.05)' }}
+                        contentStyle={{ backgroundColor: '#fff8e8', borderColor: '#d7def8', color: '#18234f', borderRadius: 12 }}
+                        cursor={{ fill: 'rgba(77, 95, 157, 0.08)' }}
                       />
                       <Bar dataKey="fuelEfficiencyKmPerL" radius={[4, 4, 0, 0]}>
                         {fuelData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.fuelEfficiencyKmPerL > 0 ? '#3b82f6' : '#475569'} />
+                          <Cell key={`cell-${index}`} fill={entry.fuelEfficiencyKmPerL > 0 ? '#53659f' : '#b4bddc'} />
                         ))}
                       </Bar>
                     </BarChart>
@@ -292,13 +292,13 @@ export default function Reports() {
                 <div className="h-72">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={costData}>
-                      <XAxis dataKey="registrationNumber" stroke="#94a3b8" fontSize={11} tickLine={false} />
-                      <YAxis stroke="#94a3b8" fontSize={11} tickLine={false} unit=" $" />
+                      <XAxis dataKey="registrationNumber" stroke="#6f789f" fontSize={11} tickLine={false} />
+                      <YAxis stroke="#6f789f" fontSize={11} tickLine={false} unit=" $" />
                       <Tooltip
-                        contentStyle={{ backgroundColor: '#1e293b', borderColor: '#334155', color: '#f1f5f9' }}
-                        cursor={{ fill: 'rgba(255,255,255,0.05)' }}
+                        contentStyle={{ backgroundColor: '#fff8e8', borderColor: '#d7def8', color: '#18234f', borderRadius: 12 }}
+                        cursor={{ fill: 'rgba(77, 95, 157, 0.08)' }}
                       />
-                      <Bar dataKey="totalOperationalCost" fill="#f59e0b" radius={[4, 4, 0, 0]} />
+                      <Bar dataKey="totalOperationalCost" fill="#f1c84b" radius={[4, 4, 0, 0]} />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
@@ -350,15 +350,15 @@ export default function Reports() {
                 <div className="h-72">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={roiData}>
-                      <XAxis dataKey="registrationNumber" stroke="#94a3b8" fontSize={11} tickLine={false} />
-                      <YAxis stroke="#94a3b8" fontSize={11} tickLine={false} unit=" %" />
+                      <XAxis dataKey="registrationNumber" stroke="#6f789f" fontSize={11} tickLine={false} />
+                      <YAxis stroke="#6f789f" fontSize={11} tickLine={false} unit=" %" />
                       <Tooltip
-                        contentStyle={{ backgroundColor: '#1e293b', borderColor: '#334155', color: '#f1f5f9' }}
-                        cursor={{ fill: 'rgba(255,255,255,0.05)' }}
+                        contentStyle={{ backgroundColor: '#fff8e8', borderColor: '#d7def8', color: '#18234f', borderRadius: 12 }}
+                        cursor={{ fill: 'rgba(77, 95, 157, 0.08)' }}
                       />
                       <Bar dataKey="roiPercent" radius={[4, 4, 0, 0]}>
                         {roiData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.roiPercent >= 0 ? '#10b981' : '#ef4444'} />
+                          <Cell key={`cell-${index}`} fill={entry.roiPercent >= 0 ? '#35a66f' : '#df5b61'} />
                         ))}
                       </Bar>
                     </BarChart>
