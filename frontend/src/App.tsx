@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { Toaster } from 'react-hot-toast';
 import Layout from './components/Layout';
+import LandingPage from './pages/LandingPage';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Vehicles from './pages/Vehicles';
@@ -16,12 +17,15 @@ export default function App() {
     <AuthProvider>
       <Router>
         <Routes>
+          {/* Public landing page */}
+          <Route path="/" element={<LandingPage />} />
+
           {/* Public login page */}
           <Route path="/login" element={<Login />} />
 
           {/* Protected routes */}
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Dashboard />} />
+          <Route element={<Layout />}>
+            <Route path="dashboard" element={<Dashboard />} />
             <Route path="vehicles" element={<Vehicles />} />
             <Route path="drivers" element={<Drivers />} />
             <Route path="trips" element={<Trips />} />

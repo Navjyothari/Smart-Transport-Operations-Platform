@@ -18,7 +18,7 @@ export default function Sidebar() {
   const { logout, user } = useAuth();
 
   const menuItems = [
-    { path: '/', label: 'Dashboard', icon: <LayoutDashboard size={20} />, roles: ['FLEET_MANAGER', 'DRIVER', 'SAFETY_OFFICER', 'FINANCIAL_ANALYST'] },
+    { path: '/dashboard', label: 'Dashboard', icon: <LayoutDashboard size={20} />, roles: ['FLEET_MANAGER', 'DRIVER', 'SAFETY_OFFICER', 'FINANCIAL_ANALYST'] },
     { path: '/vehicles', label: 'Vehicles', icon: <Truck size={20} />, roles: ['FLEET_MANAGER', 'DRIVER', 'SAFETY_OFFICER', 'FINANCIAL_ANALYST'] },
     { path: '/drivers', label: 'Drivers', icon: <Users size={20} />, roles: ['FLEET_MANAGER', 'SAFETY_OFFICER', 'FINANCIAL_ANALYST'] },
     { path: '/trips', label: 'Trips', icon: <Route size={20} />, roles: ['FLEET_MANAGER', 'DRIVER', 'SAFETY_OFFICER', 'FINANCIAL_ANALYST'] },

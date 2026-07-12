@@ -23,7 +23,7 @@ export default function Login() {
     try {
       await login(email, password);
       toast.success('Logged in successfully!');
-      navigate('/');
+      navigate('/dashboard');
     } catch (err: any) {
       const msg = err.response?.data?.error || 'Invalid credentials. Please try again.';
       toast.error(msg);
