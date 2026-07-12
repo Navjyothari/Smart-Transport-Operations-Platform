@@ -19,6 +19,10 @@ const statusConfig: Record<string, { label: string; color: string }> = {
   // Maintenance statuses
   ACTIVE: { label: 'Active', color: 'bg-amber-900/60 text-amber-400 border border-amber-700/50' },
   CLOSED: { label: 'Closed', color: 'bg-emerald-900/60 text-emerald-400 border border-emerald-700/50' },
+  // Driver request statuses
+  PENDING: { label: 'Pending', color: 'bg-amber-900/60 text-amber-400 border border-amber-700/50' },
+  APPROVED: { label: 'Approved', color: 'bg-emerald-900/60 text-emerald-400 border border-emerald-700/50' },
+  REJECTED: { label: 'Rejected', color: 'bg-red-900/60 text-red-400 border border-red-700/50' },
 };
 
 export default function StatusBadge({ status }: StatusBadgeProps) {

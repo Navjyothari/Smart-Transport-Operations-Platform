@@ -151,3 +151,25 @@ model Expense {
   date      DateTime        @default(now())
   notes     String?         @db.Text
 }
+
+model DriverRequest {
+  id                String        @id @default(uuid())
+  name              String
+  licenseNumber     String
+  licenseCategory   String
+  licenseExpiryDate DateTime
+  contactNumber     String
+  email             String
+  status            RequestStatus @default(PENDING)
+  reviewedBy        String?
+  reviewedAt        DateTime?
+  rejectionReason   String?
+  createdAt         DateTime      @default(now())
+}
+
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+

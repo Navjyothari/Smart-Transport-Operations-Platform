@@ -3,10 +3,12 @@ import { AuthProvider } from './contexts/AuthContext';
 import { Toaster } from 'react-hot-toast';
 import Layout from './components/Layout';
 import LandingPage from './pages/LandingPage';
+import Apply from './pages/Apply';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Vehicles from './pages/Vehicles';
 import Drivers from './pages/Drivers';
+import DriverRequests from './pages/DriverRequests';
 import Trips from './pages/Trips';
 import Maintenance from './pages/Maintenance';
 import FuelExpenses from './pages/FuelExpenses';
@@ -20,6 +22,9 @@ export default function App() {
           {/* Public landing page */}
           <Route path="/" element={<LandingPage />} />
 
+          {/* Public apply driver page */}
+          <Route path="/apply" element={<Apply />} />
+
           {/* Public login page */}
           <Route path="/login" element={<Login />} />
 
@@ -28,6 +33,7 @@ export default function App() {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="vehicles" element={<Vehicles />} />
             <Route path="drivers" element={<Drivers />} />
+            <Route path="driver-requests" element={<DriverRequests />} />
             <Route path="trips" element={<Trips />} />
             <Route path="maintenance" element={<Maintenance />} />
             <Route path="fuel-expenses" element={<FuelExpenses />} />

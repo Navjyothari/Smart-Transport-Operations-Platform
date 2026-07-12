@@ -9,6 +9,7 @@ import {
   Fuel,
   BarChart3,
   ArrowRight,
+  UserPlus,
   AlertTriangle,
   Gauge,
   CheckCircle2,
@@ -65,6 +66,9 @@ export default function LandingPage() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link to="/login" className="btn btn-primary px-8 py-3.5 text-base shadow-xl shadow-blue-500/20 hover:scale-[1.02] transition-transform">
             Get Started (Log In) <ArrowRight size={18} />
+          </Link>
+          <Link to="/apply" className="btn btn-secondary px-8 py-3.5 text-base hover:scale-[1.02] transition-transform border border-slate-700">
+            <UserPlus size={18} /> Apply as a Driver
           </Link>
         </div>
       </section>
@@ -253,9 +257,12 @@ export default function LandingPage() {
           <p className="text-slate-400 mb-8 max-w-xl mx-auto">
             Log in now to access the TransitOps portal.
           </p>
-          <div className="flex justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link to="/login" className="btn btn-primary px-8 py-3.5 shadow-xl shadow-blue-500/20">
               Log In to Portal <ArrowRight size={16} />
+            </Link>
+            <Link to="/apply" className="btn btn-secondary px-8 py-3.5 border border-slate-700">
+              <UserPlus size={16} /> Apply as a Driver
             </Link>
           </div>
         </div>

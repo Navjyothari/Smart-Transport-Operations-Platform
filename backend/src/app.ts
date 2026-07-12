@@ -5,6 +5,7 @@ import cors from 'cors';
 import authRoutes from './modules/auth/auth.routes';
 import vehicleRoutes from './modules/vehicles/vehicles.routes';
 import driverRoutes from './modules/drivers/drivers.routes';
+import driverRequestRoutes from './modules/driver-requests/driver-requests.routes';
 import tripRoutes from './modules/trips/trips.routes';
 import maintenanceRoutes from './modules/maintenance/maintenance.routes';
 import fuelExpenseRoutes from './modules/fuel-expenses/fuel-expenses.routes';
@@ -31,6 +32,7 @@ app.get('/health', (_req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/vehicles', vehicleRoutes);
 app.use('/api/drivers', driverRoutes);
+app.use('/api/driver-requests', driverRequestRoutes);
 app.use('/api/trips', tripRoutes);
 app.use('/api/maintenance', maintenanceRoutes);
 app.use('/api', fuelExpenseRoutes);          // mounts /api/fuel-logs + /api/expenses

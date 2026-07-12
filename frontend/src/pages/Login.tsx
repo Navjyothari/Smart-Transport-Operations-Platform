@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Truck, Lock, Mail, Eye, EyeOff } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -113,6 +113,12 @@ export default function Login() {
             )}
           </button>
         </form>
+
+        <div className="mt-4 text-center">
+          <Link to="/apply" className="text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+            Want to join as a driver? Apply now
+          </Link>
+        </div>
 
         {/* Demo Credentials Quick-Links */}
         <div className="mt-8 border-t border-slate-800 pt-6">
